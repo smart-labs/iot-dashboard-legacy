@@ -6,14 +6,14 @@ export const Container = styled.div`
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
-  width: 25%;
-  height: 240px;
-  background-color: ${props => props.theme.trashStateColorBackground};
+  width: ${props => props.width};
+  height: 260px;
+  background-color: ${props => props.theme.colorBackground};
   margin-left: 1.5rem;
   margin-top: 1rem;
-  border: 3px double ${props => props.theme.trashStatePrimaryColor};
+  border: 3px double ${props => props.theme.primaryColor};
   border-radius: 3px;
-  box-shadow: 0px 0.4px 10px 0px ${props => props.theme.trashStateColorShadow};
+  box-shadow: 0px 0.4px 10px 0px ${props => props.theme.colorShadow};
 `;
 
 export const Title = styled.div`
@@ -25,7 +25,7 @@ export const Title = styled.div`
   align-items: center;
   padding-right: 0.8rem;
   color: #fff;
-  background-color: ${props => props.theme.trashStateColorBackground};
+  background-color: ${props => props.theme.colorBackground};
   border-radius: 0.4rem;
   font-size: 1.1rem;
   p {
@@ -41,9 +41,9 @@ export const Icon = styled.div`
   align-items: center;
   width: 30px;
   height: 30px;
-  background-color: ${props => props.theme.trashStatePrimaryColor};
+  background-color: ${props => props.theme.primaryColor};
   border-radius: 300px;
-  box-shadow: 0px 0.4px 10px 0px ${props => props.theme.trashStateColorShadow};
+  box-shadow: 0px 0.4px 10px 0px ${props => props.theme.colorShadow};
   margin-right: 0.5rem;
 `;
 
@@ -63,7 +63,7 @@ export const Info = styled.div`
 
   .trash {
     font-size: 6rem;
-    color: ${props => props.theme.trashStatePrimaryColor};
-    text-shadow: 4px 4px 60px ${props => props.theme.trashStateColorShadow};
+    color: ${props => props.theme.primaryColor};
+    text-shadow: 4px 4px 60px ${props => props.theme.colorShadow};
   }
 `;

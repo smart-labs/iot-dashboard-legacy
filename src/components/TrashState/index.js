@@ -7,24 +7,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Container, Title, Icon, Info } from "./styles";
 import { ThemeProvider } from "styled-components";
+import theme from "../../styles/theme";
 
-export default function TrashState({ trash }) {
-  const theme = [
-    {
-      trashStateColorBackground: "rgba(230, 67, 86, 0.1)",
-      trashStateColorShadow: "rgba(230, 67, 86, 0.61)",
-      trashStatePrimaryColor: "rgba(230, 67, 86, 1)"
-    },
-    {
-      trashStateColorBackground: "rgba(33, 217, 154, 0.1)",
-      trashStateColorShadow: "rgba(33, 217, 154, 0.61)",
-      trashStatePrimaryColor: "rgba(33, 217, 154, 1)"
-    }
-  ];
-
+export default function TrashState({ sensor, width }) {
   return (
-    <ThemeProvider theme={trash.state ? theme[0] : theme[1]}>
-      <Container>
+    <ThemeProvider theme={sensor.value ? theme[0] : theme[1]}>
+      <Container width={width}>
         <Title>
           <Icon>
             <FontAwesomeIcon icon={faTrashAlt} />
@@ -32,10 +20,12 @@ export default function TrashState({ trash }) {
           <p>Status do Lixeiro</p>
         </Title>
         <Info>
-          <p>Status: {trash.state ? "Cheio" : "Normal"}</p>
+          <p>
+            Status: <strong> {sensor.value ? "Cheio" : "Normal"} </strong>
+          </p>
           <FontAwesomeIcon
             className="trash"
-            icon={trash.state ? faTrashRestore : faTrash}
+            icon={sensor.value ? faTrashRestore : faTrash}
           />
         </Info>
       </Container>
