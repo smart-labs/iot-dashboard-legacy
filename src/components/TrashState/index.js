@@ -11,7 +11,7 @@ import theme from "../../styles/theme";
 
 export default function TrashState({ sensor, width }) {
   return (
-    <ThemeProvider theme={sensor.value ? theme[0] : theme[1]}>
+    <ThemeProvider theme={sensor.sensorValue === "true" ? theme[0] : theme[1]}>
       <Container width={width}>
         <Title>
           <Icon>
@@ -21,7 +21,11 @@ export default function TrashState({ sensor, width }) {
         </Title>
         <Info>
           <p>
-            Status: <strong> {sensor.value ? "Cheio" : "Normal"} </strong>
+            Status:{" "}
+            <strong>
+              {" "}
+              {sensor.sensorValue === "true" ? "Cheio" : "Normal"}{" "}
+            </strong>
           </p>
           <FontAwesomeIcon
             className="trash"
