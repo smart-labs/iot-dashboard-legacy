@@ -15,6 +15,7 @@
     "react-mapbox-gl": "^4.4.0",
     "react-scripts": "3.0.1",
     "recharts": "^1.6.2",
+    "socket.io-client": "^2.2.0",
     "styled-components": "^4.2.0"
   },
   "scripts": {

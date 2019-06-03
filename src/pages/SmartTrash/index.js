@@ -10,6 +10,7 @@ import { trashName } from "../../config/knotThing";
 import theme from "../../styles/theme";
 import axios from "axios";
 import Moment from "moment";
+import io from "socket.io-client";
 
 import {
   AreaChart,
@@ -20,10 +21,13 @@ import {
   Tooltip,
   ResponsiveContainer
 } from "recharts";
+import { createConfigItem } from "@babel/core";
 
 const Map = ReactMapboxGl({
   accessToken: TOKEN
 });
+
+const socket = io("http://10.0.0.101:3003/");
 
 export default function SmartTrash() {
   const [state, setState] = useState({ monthly: {} });
@@ -43,6 +47,10 @@ export default function SmartTrash() {
       }
     );
     setState(data);
+    socket("subscribe", data);
+    socket.on(data.thingId, response => {
+      setState(response);
+    });
   }, []);
 
   useEffect(async () => {
@@ -54,6 +62,10 @@ export default function SmartTrash() {
       }
     );
     setDoor(data);
+    socket("subscribe", data);
+    socket.on(data.thingId, response => {
+      setDoor(response);
+    });
   }, []);
 
   return (
