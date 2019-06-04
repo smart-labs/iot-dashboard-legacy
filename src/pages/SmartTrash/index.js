@@ -26,7 +26,7 @@ const Map = ReactMapboxGl({
   accessToken: TOKEN
 });
 
-const socket = io("https://smart-trash-upe.herokuapp.com");
+const socket = io("https://smart-trash-upe.herokuapp.com/");
 
 export default function SmartTrash() {
   const [state, setState] = useState({ monthly: {} });
@@ -48,9 +48,17 @@ export default function SmartTrash() {
     setState(data);
 
     socket.emit("subscribe", data);
-    const event = data.thingId + data.sensorId;
-    socket.on(event, response => {
-      setState(response);
+    socket.on("116c290e721452381", async response => {
+      if (response.data.sensor_id === 1) {
+        const { data } = await axios.put(
+          "https://smart-trash-upe.herokuapp.com/api/sensor/update",
+          {
+            id: response.source,
+            data: response.data
+          }
+        );
+        setState(data);
+      }
     });
   }, []);
   useEffect(async () => {
@@ -63,15 +71,20 @@ export default function SmartTrash() {
     );
     setDoor(data);
     socket.emit("subscribe", data);
-    const event = data.thingId + data.sensorId;
-    socket.on(event, response => {
-      setDoor(response);
+
+    socket.on("116c290e721452382", async response => {
+      if (response.data.sensor_id === 2) {
+        const { data } = await axios.put(
+          "https://smart-trash-upe.herokuapp.com/api/sensor/update",
+          {
+            id: response.source,
+            data: response.data
+          }
+        );
+        setDoor(data);
+      }
     });
   }, []);
-
-  useEffect(() => console.log(door), [door]);
-
-  useEffect(() => console.log(state), [state]);
 
   return (
     <>
