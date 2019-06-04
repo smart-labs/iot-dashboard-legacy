@@ -21,13 +21,12 @@ import {
   Tooltip,
   ResponsiveContainer
 } from "recharts";
-import { createConfigItem } from "@babel/core";
 
 const Map = ReactMapboxGl({
   accessToken: TOKEN
 });
 
-const socket = io("http://10.0.0.101:3003/");
+const socket = io("https://smart-trash-upe.herokuapp.com");
 
 export default function SmartTrash() {
   const [state, setState] = useState({ monthly: {} });
@@ -47,12 +46,13 @@ export default function SmartTrash() {
       }
     );
     setState(data);
-    socket("subscribe", data);
-    socket.on(data.thingId, response => {
+
+    socket.emit("subscribe", data);
+    const event = data.thingId + data.sensorId;
+    socket.on(event, response => {
       setState(response);
     });
   }, []);
-
   useEffect(async () => {
     const { data } = await axios.post(
       "https://smart-trash-upe.herokuapp.com/api/sensor/",
@@ -62,11 +62,16 @@ export default function SmartTrash() {
       }
     );
     setDoor(data);
-    socket("subscribe", data);
-    socket.on(data.thingId, response => {
+    socket.emit("subscribe", data);
+    const event = data.thingId + data.sensorId;
+    socket.on(event, response => {
       setDoor(response);
     });
   }, []);
+
+  useEffect(() => console.log(door), [door]);
+
+  useEffect(() => console.log(state), [state]);
 
   return (
     <>
