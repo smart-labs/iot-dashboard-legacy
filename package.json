@@ -13,7 +13,10 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-mapbox-gl": "^4.4.0",
+    "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1",
+    "react-use-form-state": "^0.10.2",
+    "reactn": "^2.0.4",
     "recharts": "^1.6.2",
     "styled-components": "^4.2.0"
   },
@@ -22,6 +25,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -1,18 +1,10 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Container, Title, Icon, Info } from "./styles";
-import theme from "../../styles/theme";
-import { ThemeProvider } from "styled-components";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Container, Title, Icon, Info } from './styles';
+import theme from '../../styles/theme';
+import { ThemeProvider } from 'styled-components';
 
-export default function Box({
-  sensor,
-  color,
-  title,
-  info,
-  width,
-  icon,
-  children
-}) {
+function Card({ sensor, color, title, info, width, icon, children }) {
   return (
     <ThemeProvider theme={theme[color]}>
       <Container width={width}>
@@ -32,3 +24,5 @@ export default function Box({
     </ThemeProvider>
   );
 }
+
+export default Card;
