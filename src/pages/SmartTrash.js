@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import TrashState from '../components/TrashState';
+import TrashCan from '../components/modules/TrashCan';
 import AppShell from '../components/app/Shell';
 import Card from '../components/Card';
 import styled from 'styled-components';
@@ -66,7 +66,7 @@ export default function SmartTrash() {
   return (
     <AppShell>
       <Container>
-        <TrashState width={'25%'} sensor={state} />
+        <TrashCan width={'25%'} sensor={state} />
         <Card
           width={'65%'}
           color={3}

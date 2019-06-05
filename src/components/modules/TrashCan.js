@@ -1,6 +1,42 @@
-import styled from "styled-components";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faTrashAlt,
+  faTrashRestore,
+  faTrash,
+} from '@fortawesome/free-solid-svg-icons';
+import styled, { ThemeProvider } from 'styled-components';
+import theme from '../../styles/theme';
 
-export const Container = styled.div`
+export default function TrashCan({ sensor, width }) {
+  return (
+    <ThemeProvider theme={sensor.sensorValue === 'true' ? theme[0] : theme[1]}>
+      <Container width={width}>
+        <Title>
+          <Icon>
+            <FontAwesomeIcon icon={faTrashAlt} />
+          </Icon>
+          <p>Status do Lixeiro</p>
+        </Title>
+        <Info>
+          <p>
+            Status:{' '}
+            <strong>
+              {' '}
+              {sensor.sensorValue === 'true' ? 'Cheio' : 'Normal'}{' '}
+            </strong>
+          </p>
+          <FontAwesomeIcon
+            className="trash"
+            icon={sensor.value ? faTrashRestore : faTrash}
+          />
+        </Info>
+      </Container>
+    </ThemeProvider>
+  );
+}
+
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -16,7 +52,7 @@ export const Container = styled.div`
   box-shadow: 0px 0.4px 10px 0px ${props => props.theme.colorShadow};
 `;
 
-export const Title = styled.div`
+const Title = styled.div`
   margin-top: 1rem;
   display: flex;
   flex-direction: row;
@@ -33,7 +69,7 @@ export const Title = styled.div`
   }
 `;
 
-export const Icon = styled.div`
+const Icon = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -47,7 +83,7 @@ export const Icon = styled.div`
   margin-right: 0.5rem;
 `;
 
-export const Info = styled.div`
+const Info = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
