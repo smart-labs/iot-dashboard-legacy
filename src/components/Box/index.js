@@ -24,7 +24,8 @@ export default function Box({
         </Title>
         <Info>
           <p>
-            {info.title} <strong> {console.log(sensor)} </strong> {info.scale}
+            {info.title} <strong> {sensor.quantityCurrent} </strong>{" "}
+            {info.scale}
           </p>
         </Info>
         {children}
