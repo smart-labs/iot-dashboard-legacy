@@ -16,7 +16,8 @@ function Card({ sensor, color, title, info, width, icon, children }) {
         </Title>
         <Info>
           <p>
-            {info.title} <strong> {console.log(sensor)} </strong> {info.scale}
+            {info.title} <strong> {sensor.quantityCurrent} </strong>{" "}
+            {info.scale}
           </p>
         </Info>
         {children}

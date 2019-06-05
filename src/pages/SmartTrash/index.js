@@ -7,9 +7,10 @@ import { faChartArea, faMapMarkedAlt } from "@fortawesome/free-solid-svg-icons";
 import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 import TOKEN from "../../config/map";
 import { trashName } from "../../config/knotThing";
+import baseUrl from "../../config/serviceUrl";
 import theme from "../../styles/theme";
 import axios from "axios";
-import Moment from "moment";
+import io from "socket.io-client";
 
 import {
   AreaChart,
@@ -25,9 +26,11 @@ const Map = ReactMapboxGl({
   accessToken: TOKEN
 });
 
+const socket = io(baseUrl);
+
 export default function SmartTrash() {
-  const [state, setState] = useState({ monthly: {} });
-  const [door, setDoor] = useState({ monthly: {} });
+  const [state, setState] = useState({ monthly: [] });
+  const [door, setDoor] = useState({ monthly: [] });
   const [location] = useState({
     center: [-35.9807185, -8.238999],
     zoom: [16.3],
@@ -35,25 +38,28 @@ export default function SmartTrash() {
   });
 
   useEffect(async () => {
-    const { data } = await axios.post(
-      "https://smart-trash-upe.herokuapp.com/api/sensor/",
-      {
-        name: trashName,
-        sensorId: 1
-      }
-    );
+    const { data } = await axios.post(`${baseUrl}api/sensor/`, {
+      name: trashName,
+      sensorId: 1
+    });
     setState(data);
+    const event = data.thingId + data.sensorId;
+    socket.emit("subscribe", data);
+    socket.on(event, async response => {
+      setState(response);
+    });
   }, []);
-
   useEffect(async () => {
-    const { data } = await axios.post(
-      "https://smart-trash-upe.herokuapp.com/api/sensor/",
-      {
-        name: trashName,
-        sensorId: 2
-      }
-    );
+    const { data } = await axios.post(`${baseUrl}api/sensor/`, {
+      name: trashName,
+      sensorId: 2
+    });
     setDoor(data);
+    const event = data.thingId + data.sensorId;
+    socket.emit("subscribe", data);
+    socket.on(event, async response => {
+      setDoor(response);
+    });
   }, []);
 
   return (
@@ -66,7 +72,7 @@ export default function SmartTrash() {
           color={3}
           title={"Lixeiro Cheio por mês"}
           info={{ title: "Quantidade Atual:", scale: "" }}
-          sensor={state.monthly[Moment().month()]}
+          sensor={state}
           icon={faChartArea}
         >
           <ResponsiveContainer width="95%" height="100%">
@@ -90,7 +96,7 @@ export default function SmartTrash() {
           color={2}
           title={"Lixeiro aberto por mês"}
           info={{ title: "Quantidade Atual:", scale: "" }}
-          sensor={door.monthly[Moment().month()]}
+          sensor={door}
           icon={faChartArea}
         >
           <ResponsiveContainer width="95%" height="100%">
