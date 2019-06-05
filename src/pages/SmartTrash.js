@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import Header from "../../components/Header";
-import TrashState from "../../components/TrashState";
-import Box from "../../components/Box";
-import { Container } from "./styles";
-import { faChartArea, faMapMarkedAlt } from "@fortawesome/free-solid-svg-icons";
-import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
-import TOKEN from "../../config/map";
-import { trashName } from "../../config/knotThing";
-import baseUrl from "../../config/serviceUrl";
-import theme from "../../styles/theme";
-import axios from "axios";
-import io from "socket.io-client";
+import React, { useState, useEffect } from 'react';
+import TrashState from '../components/TrashState';
+import AppShell from '../components/app/Shell';
+import Card from '../components/Card';
+import styled from 'styled-components';
+import { faChartArea, faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons';
+import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
+import TOKEN from '../config/map';
+import { trashName } from '../config/knotThing';
+import baseUrl from '../config/serviceUrl';
+import theme from '../styles/theme';
+import axios from 'axios';
+import io from 'socket.io-client';
 
 import {
   AreaChart,
@@ -19,11 +19,11 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  ResponsiveContainer
-} from "recharts";
+  ResponsiveContainer,
+} from 'recharts';
 
 const Map = ReactMapboxGl({
-  accessToken: TOKEN
+  accessToken: TOKEN,
 });
 
 const socket = io(baseUrl);
@@ -34,44 +34,44 @@ export default function SmartTrash() {
   const [location] = useState({
     center: [-35.9807185, -8.238999],
     zoom: [16.3],
-    marker: [-35.98067017, -8.23853006]
+    marker: [-35.98067017, -8.23853006],
   });
 
   useEffect(async () => {
     const { data } = await axios.post(`${baseUrl}api/sensor/`, {
       name: trashName,
-      sensorId: 1
+      sensorId: 1,
     });
     setState(data);
     const event = data.thingId + data.sensorId;
-    socket.emit("subscribe", data);
+    socket.emit('subscribe', data);
     socket.on(event, async response => {
       setState(response);
     });
   }, []);
+
   useEffect(async () => {
     const { data } = await axios.post(`${baseUrl}api/sensor/`, {
       name: trashName,
-      sensorId: 2
+      sensorId: 2,
     });
     setDoor(data);
     const event = data.thingId + data.sensorId;
-    socket.emit("subscribe", data);
+    socket.emit('subscribe', data);
     socket.on(event, async response => {
       setDoor(response);
     });
   }, []);
 
   return (
-    <>
-      <Header />
+    <AppShell>
       <Container>
-        <TrashState width={"25%"} sensor={state} />
-        <Box
-          width={"65%"}
+        <TrashState width={'25%'} sensor={state} />
+        <Card
+          width={'65%'}
           color={3}
-          title={"Lixeiro Cheio por mês"}
-          info={{ title: "Quantidade Atual:", scale: "" }}
+          title={'Lixeiro Cheio por mês'}
+          info={{ title: 'Quantidade Atual:', scale: '' }}
           sensor={state}
           icon={faChartArea}
         >
@@ -89,13 +89,13 @@ export default function SmartTrash() {
               />
             </AreaChart>
           </ResponsiveContainer>
-        </Box>
+        </Card>
 
-        <Box
-          width={"45%"}
+        <Card
+          width={'45%'}
           color={2}
-          title={"Lixeiro aberto por mês"}
-          info={{ title: "Quantidade Atual:", scale: "" }}
+          title={'Lixeiro aberto por mês'}
+          info={{ title: 'Quantidade Atual:', scale: '' }}
           sensor={door}
           icon={faChartArea}
         >
@@ -113,14 +113,14 @@ export default function SmartTrash() {
               />
             </AreaChart>
           </ResponsiveContainer>
-        </Box>
+        </Card>
 
-        <Box
-          width={"45%"}
+        <Card
+          width={'45%'}
           color={4}
-          title={"Localização"}
-          info={{ title: "", scale: "" }}
-          sensor={{ id: "", value: "" }}
+          title={'Localização'}
+          info={{ title: '', scale: '' }}
+          sensor={{ id: '', value: '' }}
           icon={faMapMarkedAlt}
         >
           <Map
@@ -128,21 +128,31 @@ export default function SmartTrash() {
             zoom={location.zoom}
             center={location.center}
             containerStyle={{
-              height: "100%",
-              width: "100%"
+              height: '100%',
+              width: '100%',
             }}
           >
             <Layer
               type="symbol"
               id="marker"
-              layout={{ "icon-image": "marker-15" }}
+              layout={{ 'icon-image': 'marker-15' }}
               title="Ok"
             >
               <Feature coordinates={location.marker} />
             </Layer>
           </Map>
-        </Box>
+        </Card>
       </Container>
-    </>
+    </AppShell>
   );
 }
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding-top: 3rem;
+  width: 100%;
+`;

@@ -1,7 +1,7 @@
 import { setGlobal } from 'reactn';
 
 setGlobal({
-  user: null,
+  user: {},
   userChecked: true,
   authError: null,
 });
