@@ -8,14 +8,37 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import Card from './Card';
 import styled from 'styled-components';
+import baseUrl from '../../config/serviceUrl';
+import axios from 'axios';
 
 const AirConditioningModule = () => {
   const [powerState, setPowerState] = React.useState(false);
   const [temperature, setTemperature] = React.useState(20);
 
-  const decreaseTemperature = () => setTemperature(temperature - 1);
-  const increaseTemperature = () => setTemperature(temperature + 1);
-  const switchPowerState = () => setPowerState(!powerState);
+  const sendDataToSensor = async value => {
+    const response = await axios.post(`${baseUrl}api/air/`, {
+      name: 'Remote Control',
+      value,
+    });
+    console.log(response);
+    return response;
+  };
+
+  const decreaseTemperature = async () => {
+    setTemperature(temperature - 1);
+    await sendDataToSensor(temperature - 1);
+  };
+
+  const increaseTemperature = async () => {
+    setTemperature(temperature + 1);
+    await sendDataToSensor(temperature + 1);
+  };
+
+  const switchPowerState = async () => {
+    setPowerState(!powerState);
+    await sendDataToSensor(powerState ? 0 : 1);
+    await sendDataToSensor(temperature);
+  };
 
   return (
     <Card
