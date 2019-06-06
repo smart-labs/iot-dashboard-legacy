@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-const Header = ({ title = '[Smart]Trash' }) => {
+const Header = ({ title = '', icon }) => {
   const getTitle = () => {
     const highlightStart = title.indexOf('[');
     const highlightEnd = title.indexOf(']');
@@ -24,13 +23,13 @@ const Header = ({ title = '[Smart]Trash' }) => {
     <StyledWrapper>
       <h1>
         {getTitle()}
-        <FontAwesomeIcon icon={faTrash} />
+        {icon && <FontAwesomeIcon icon={icon} />}
       </h1>
     </StyledWrapper>
   );
 };
 
-export const StyledWrapper = styled.header`
+const StyledWrapper = styled.header`
   background-color: #1c1d25;
   display: flex;
   flex-direction: row;
