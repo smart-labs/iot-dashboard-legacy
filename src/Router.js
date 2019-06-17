@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Overview from './pages/Overview';
 import SmartTrash from './pages/SmartTrash';
 import AirConditioning from './pages/AirConditioning';
+import SmartRoom from './pages/SmartRoom';
 
 const Router = () => {
   const [user] = useGlobal('user');
@@ -18,6 +19,7 @@ const Router = () => {
         <Route path="/" exact component={Overview} />
         <Route path="/trash" exact component={SmartTrash} />
         <Route path="/ac" exact component={AirConditioning} />
+        <Route path="/room" exact component={SmartRoom} />
       </Switch>
     </BrowserRouter>
   );
