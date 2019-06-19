@@ -1,5 +1,5 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import {
   faFan,
   faMinus,
@@ -47,10 +47,6 @@ const AirConditioningModule = () => {
     await sendDataToSensor(temperature);
   };
 
-  const iconsFan = () => {
-    return <FontAwesomeIcon icon={faWind} />
-  };
-
   return (
     <Card
       width={'45%'}
@@ -65,20 +61,21 @@ const AirConditioningModule = () => {
       <StyledWrapper>
 
         <StyledPowerButton powerState={powerState} onClick={switchPowerState}>
-          <FontAwesomeIcon icon={faPowerOff} />
+          <Icon icon={faPowerOff} />
         </StyledPowerButton>
 
         <Container>
           <div className="rangeButton">
-            <FontAwesomeIcon icon={faMinus} onClick={decreaseTemperature} />
+            <Icon icon={faMinus} onClick={decreaseTemperature} />
             <span>{temperature}ºC</span>
-            <FontAwesomeIcon icon={faPlus} onClick={increaseTemperature} />
+            <Icon icon={faPlus} onClick={increaseTemperature} />
           </div>
 
-          <div className="rangeButtonSpecial" onClick={increaseFanSpeed}>
+          <div className="rangeButton" onClick={increaseFanSpeed}>
               <StyledSpeed fanSpeed={fanSpeed}>
-                <span>{iconsFan()} {fanSpeed}</span>
+                <Icon icon={faWind} />
               </StyledSpeed>
+              <span>{fanSpeed}</span>
           </div>
         </Container>
       
@@ -93,35 +90,18 @@ const StyledWrapper = styled.div`
   align-items: center;
 
   .rangeButton {
+    display: flex;
+    align-items: center;
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 0.2em;
     padding: 0.5em 1em;
+    margin: 0 0.5em;
     display: flex;
+    color: white;
 
     svg {
-      color: white;
       font-size: 2.5em;
       padding: 6px;
-      cursor: pointer;
-    }
-
-    span {
-      color: white;
-      font-size: 1.5em;
-      padding: 0 0.5em;
-    }
-  }
-
-  .rangeButtonSpecial {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 0.2em;
-    padding: 0.5em 1em;
-    display: flex;
-    margin-left: 1em; 
-
-    svg {
-      font-size: 2.5em;
-      padding: 4px;
       cursor: pointer;
     }
 
@@ -149,10 +129,9 @@ const StyledPowerButton = styled.div`
 
 const StyledSpeed = styled.div`
   color: ${props => (`rgba(255, 255, 255, ${0.2*props.fanSpeed})`)};
-  font-size: 0.7em;
-  cursor: pointer;
   transition: all 0.3s ease;
 `;
 
 
 export default AirConditioningModule;
+
