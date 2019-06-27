@@ -11,12 +11,13 @@ const Card = ({
   scale,
   quantityCurrent,
   width,
+  height,
   icon,
   children,
 }) => {
   return (
     <ThemeProvider theme={theme[color]}>
-      <Container width={width}>
+      <Container width={width} height={height}>
         <Title>
           <Icon>
             <FontAwesomeIcon icon={icon} />
@@ -46,7 +47,7 @@ const Container = styled.div`
   justify-content: flex-start;
   align-items: center;
   width: ${props => props.width};
-  height: 260px;
+  height: ${props => props.height || "250px"};
   background-color: ${props => props.theme.colorBackground};
   margin-left: 1.5rem;
   margin-top: 1rem;

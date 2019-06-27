@@ -5,6 +5,8 @@ import CardButton from '../components/misc/CardButton';
 import styled from 'styled-components';
 import baseUrl from '../config/serviceUrl';
 import io from 'socket.io-client';
+import HomeModule from '../components/modules/home';
+
 
 const socket = io(baseUrl);
 
@@ -12,7 +14,7 @@ const Overview = () => {
   return (
     <AppShell title="[Smart]Labs">
       <Container>
-        <CardButton title="[Smart]Trash" icon={faChartArea} />
+        <HomeModule />
       </Container>
     </AppShell>
   );
