@@ -14,7 +14,7 @@ const TrashCanModule = ({ sensor, width }) => {
       width={width}
       title="Status do Lixeiro"
       icon={faTrashAlt}
-      color={1}
+      color={sensor.sensorValue === 'true' ? 0 : 1}
       description={'Status'}
       quantityCurrent={sensor.sensorValue === 'true' ? 'Cheio' : 'Normal'}
       scale=""
