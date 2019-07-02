@@ -29,7 +29,7 @@ const AreaChartModule = ({
       description={description}
       scale=""
       sensorId={sensorId}
-      sensorValue={sensorValue}
+      quantityCurrent={sensorValue}
       icon={faChartArea}
     >
       <ResponsiveContainer width="95%" height="100%">

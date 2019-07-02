@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const AirConditioning = () => {
   return (
-    <AppShell title="[Smart]Air" titleIcon={faFan}>
+    <AppShell title="[Smart]Air" titleIcon={faFan} link='/' >
       <Container>
         <AirConditioningModule />
       </Container>

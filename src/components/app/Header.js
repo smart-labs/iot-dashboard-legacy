@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
-const Header = ({ title = '', icon }) => {
+const Header = ({ title = '', icon, link }) => {
   const getTitle = () => {
     const highlightStart = title.indexOf('[');
     const highlightEnd = title.indexOf(']');
@@ -21,10 +22,12 @@ const Header = ({ title = '', icon }) => {
 
   return (
     <StyledWrapper>
+      <Link to={link} className="link" >
       <h1>
         {getTitle()}
         {icon && <FontAwesomeIcon icon={icon} />}
       </h1>
+      </Link>
     </StyledWrapper>
   );
 };
@@ -49,6 +52,11 @@ const StyledWrapper = styled.header`
   strong {
     color: #00e38c;
     text-shadow: 4px 4px 31px rgba(33, 217, 154, 0.61);
+  }
+
+  .link {
+    text-decoration : none;
+    color: #FFF;
   }
 `;
 

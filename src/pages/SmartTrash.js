@@ -52,17 +52,16 @@ const SmartTrash = () => {
   }, []);
 
   return (
-    <AppShell title="[Smart]Trash" titleIcon={faTrash}>
+    <AppShell title="[Smart]Trash" titleIcon={faTrash} link='/' >
       <Container>
         <TrashCanModule width={'25%'} sensor={state} />
-
         <AreaChartModule
           width={'65%'}
           color={3}
           title={'Lixeiro Cheio por mês'}
           description="Quantidade Atual"
           sensorId={state.id}
-          sensorValue={state.value}
+          sensorValue={state.quantityCurrent}
           monthly={state.monthly}
         />
 
@@ -72,7 +71,7 @@ const SmartTrash = () => {
           title={'Lixeiro aberto por mês'}
           description="Quantidade Atual"
           sensorId={door.id}
-          sensorValue={door.value}
+          sensorValue={door.quantityCurrent}
           monthly={door.monthly}
         />
 

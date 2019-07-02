@@ -14,10 +14,11 @@ import axios from 'axios';
 
 const AirConditioningModule = () => {
   const [powerState, setPowerState] = React.useState(false);
-  const [temperature, setTemperature] = React.useState(20);
+  const [temperature, setTemperature] = React.useState(19);
   const [fanSpeed, setFanSpeed] = React.useState(5);
 
   const sendDataToSensor = async value => {
+    console.log(value);
     const response = await axios.post(`${baseUrl}api/air/`, {
       name: 'Remote Control',
       value,
@@ -43,8 +44,7 @@ const AirConditioningModule = () => {
 
   const switchPowerState = async () => {
     setPowerState(!powerState);
-    await sendDataToSensor(powerState ? 0 : 1);
-    await sendDataToSensor(temperature);
+    await sendDataToSensor(powerState ? -1 : 0);
   };
 
   return (

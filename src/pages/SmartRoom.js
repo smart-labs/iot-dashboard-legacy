@@ -9,7 +9,7 @@ const SmartRoom = () => {
   const [door] = useState({ id: 0, value: 0, monthly: [] });
 
   return (
-    <AppShell title="[Smart]Room" titleIcon={faChartArea}>
+      <AppShell title="[Smart]Room" titleIcon={faChartArea} link='/' >
       <Container>
         <AreaChartModule
           width={'30%'}

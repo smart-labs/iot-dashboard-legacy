@@ -4,10 +4,10 @@ import styled from 'styled-components';
 import Header from './Header';
 import Footer from './Footer';
 
-const AppShell = ({ children, title, titleIcon }) => {
+const AppShell = ({ children, title, titleIcon, link }) => {
   return (
     <StyledWrapper>
-      <Header title={title} icon={titleIcon} />
+      <Header title={title} icon={titleIcon} link={link}/>
       {children}
       <Footer />
     </StyledWrapper>
