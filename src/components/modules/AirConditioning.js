@@ -5,12 +5,13 @@ import {
   faMinus,
   faPlus,
   faPowerOff,
-  faWind
+  faWind,
 } from '@fortawesome/free-solid-svg-icons';
 import Card from './Card';
 import styled from 'styled-components';
 import baseUrl from '../../config/serviceUrl';
 import axios from 'axios';
+import { acName } from '../../config/knotThing';
 
 const AirConditioningModule = () => {
   const [powerState, setPowerState] = React.useState(false);
@@ -20,7 +21,7 @@ const AirConditioningModule = () => {
   const sendDataToSensor = async value => {
     console.log(value);
     const response = await axios.post(`${baseUrl}api/air/`, {
-      name: 'Remote Control',
+      name: acName,
       value,
     });
     console.log(response);
@@ -39,7 +40,7 @@ const AirConditioningModule = () => {
 
   const increaseFanSpeed = async () => {
     setFanSpeed((fanSpeed % 5) + 1);
-    await sendDataToSensor((fanSpeed % 5) + 1); 
+    await sendDataToSensor((fanSpeed % 5) + 1);
   };
 
   const switchPowerState = async () => {
@@ -59,7 +60,6 @@ const AirConditioningModule = () => {
       icon={faFan}
     >
       <StyledWrapper>
-
         <StyledPowerButton powerState={powerState} onClick={switchPowerState}>
           <Icon icon={faPowerOff} />
         </StyledPowerButton>
@@ -72,13 +72,12 @@ const AirConditioningModule = () => {
           </div>
 
           <div className="rangeButton" onClick={increaseFanSpeed}>
-              <StyledSpeed fanSpeed={fanSpeed}>
-                <Icon icon={faWind} />
-              </StyledSpeed>
-              <span>{fanSpeed}</span>
+            <StyledSpeed fanSpeed={fanSpeed}>
+              <Icon icon={faWind} />
+            </StyledSpeed>
+            <span>{fanSpeed}</span>
           </div>
         </Container>
-      
       </StyledWrapper>
     </Card>
   );
@@ -116,7 +115,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-
 `;
 
 const StyledPowerButton = styled.div`
@@ -128,10 +126,8 @@ const StyledPowerButton = styled.div`
 `;
 
 const StyledSpeed = styled.div`
-  color: ${props => (`rgba(255, 255, 255, ${0.2*props.fanSpeed})`)};
+  color: ${props => `rgba(255, 255, 255, ${0.2 * props.fanSpeed})`};
   transition: all 0.3s ease;
 `;
 
-
 export default AirConditioningModule;
-

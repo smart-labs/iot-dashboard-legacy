@@ -1,2 +1,3 @@
-const baseUrl = 'http://10.0.0.104:3003/';
+const baseUrl = 'https://smart-trash-upe.herokuapp.com';
+
 export default baseUrl;
