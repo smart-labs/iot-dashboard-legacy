@@ -4,18 +4,18 @@ import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import {
   faFan,
   faTrash,
-  faChartArea
+  faChartArea,
+  faMap,
 } from '@fortawesome/free-solid-svg-icons';
 import Card from './Card';
 import styled from 'styled-components';
 
 const HomeModule = () => {
-
   return (
     <Container>
-      <Link to={'/ac'}>
+      <Link to="/ac">
         <Card
-          width={'250px'}
+          width={'400px'}
           height={'75px'}
           color={3}
           title={'Ar-condicionado'}
@@ -24,14 +24,12 @@ const HomeModule = () => {
           sensorId=""
           sensorValue=""
           icon={faFan}
-        >
-
-        </Card>
+        />
       </Link>
- 
-      <Link to={'/trash'}>
+
+      <Link to="/trash">
         <Card
-          width={'250px'}
+          width={'400px'}
           height={'75px'}
           color={2}
           title={'Lixeira'}
@@ -40,14 +38,12 @@ const HomeModule = () => {
           sensorId=""
           sensorValue=""
           icon={faTrash}
-        >
-
-        </Card>
+        />
       </Link>
 
-      <Link to={'/room'}>
+      <Link to="/room">
         <Card
-          width={'250px'}
+          width={'400px'}
           height={'75px'}
           color={0}
           title={'Sala'}
@@ -56,12 +52,23 @@ const HomeModule = () => {
           sensorId=""
           sensorValue=""
           icon={faChartArea}
-        >
+        />
+      </Link>
 
-        </Card>
+      <Link to="/map">
+        <Card
+          width={'400px'}
+          height={'75px'}
+          color={1}
+          title={'Mapa'}
+          description=""
+          scale=""
+          sensorId=""
+          sensorValue=""
+          icon={faMap}
+        />
       </Link>
     </Container>
-    
   );
 };
 
@@ -69,7 +76,7 @@ const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
   svg {
     font-size: 3.5em;
     padding: 6px;
@@ -80,14 +87,14 @@ const StyledWrapper = styled.div`
     font-size: 1.5em;
     padding: 0 0.5em;
   }
-
 `;
 
 const Container = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 export default HomeModule;

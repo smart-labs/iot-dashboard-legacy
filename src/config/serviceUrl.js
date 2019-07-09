@@ -1,3 +1,3 @@
-const baseUrl = 'https://smart-trash-upe.herokuapp.com/';
+export const baseUrl = 'https://smart-trash-upe.herokuapp.com/';
 
 export default baseUrl;

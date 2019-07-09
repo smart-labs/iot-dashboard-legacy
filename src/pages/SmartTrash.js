@@ -52,7 +52,7 @@ const SmartTrash = () => {
   }, []);
 
   return (
-    <AppShell title="[Smart]Trash" titleIcon={faTrash} link='/' >
+    <AppShell title="[Smart]Trash" titleIcon={faTrash} link="/">
       <Container>
         <TrashCanModule width={'25%'} sensor={state} />
         <AreaChartModule

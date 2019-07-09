@@ -47,7 +47,7 @@ const Container = styled.div`
   justify-content: flex-start;
   align-items: center;
   width: ${props => props.width};
-  height: ${props => props.height || "250px"};
+  height: ${props => props.height || '250px'};
   background-color: ${props => props.theme.colorBackground};
   margin-left: 1.5rem;
   margin-top: 1rem;
