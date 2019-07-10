@@ -96,17 +96,17 @@ class SmartRoom extends React.Component {
           <AreaChartModule
             width={'calc(90% + 1.5em)'}
             color={2}
-            title={'Consumo de energia'}
-            description="Quantidade Atual"
-            sensorValue={`${correnteValue} mA`}
+            title={'Consumo de corrente'}
+            description="Valor Atual"
+            sensorValue={`${correnteValue / 1000} A`}
             monthly={corrente}
           />
 
           <AreaChartModule
             width={'30%'}
             color={4}
-            title={'Uso de tensão'}
-            description="Quantidade Atual"
+            title={'Tensão atual'}
+            description="Valor Atual"
             sensorValue={`${tensaoValue} V`}
             monthly={tensao}
           />
@@ -114,8 +114,8 @@ class SmartRoom extends React.Component {
           <AreaChartModule
             width={'60%'}
             color={3}
-            title={'Uso de potência'}
-            description="Quantidade Atual"
+            title={'Consumo de energia'}
+            description="Valor Atual"
             sensorValue={`${potenciaValue} W`}
             monthly={potencia}
           />
