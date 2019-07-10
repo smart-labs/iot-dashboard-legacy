@@ -98,7 +98,7 @@ class SmartRoom extends React.Component {
             color={2}
             title={'Consumo de corrente'}
             description="Valor Atual"
-            sensorValue={`${correnteValue / 1000} A`}
+            sensorValue={`${correnteValue} mA`}
             monthly={corrente}
           />
 
