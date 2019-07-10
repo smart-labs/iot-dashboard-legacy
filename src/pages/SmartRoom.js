@@ -64,7 +64,7 @@ class SmartRoom extends React.Component {
             tt[tt.length - 1].value
           ).toFixed(0),
         },
-      ],
+      ].slice(0, 20),
 
       correnteValue: cc[cc.length - 1].value,
       tensaoValue: tt[tt.length - 1].value,
