@@ -16,7 +16,7 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1",
     "react-use-form-state": "^0.10.2",
-    "reactn": "^2.0.4",
+    "reactn": "^2.1.5",
     "recharts": "^1.6.2",
     "socket.io-client": "^2.2.0",
     "styled-components": "^4.2.0"
