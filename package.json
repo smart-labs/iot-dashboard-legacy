@@ -18,7 +18,7 @@
     "react-use-form-state": "^0.10.2",
     "reactn": "^2.0.4",
     "recharts": "^1.6.2",
-    "socket.io-client": "^2.2.0",
+    "socket.io-client": "^2.3.0",
     "styled-components": "^4.2.0"
   },
   "scripts": {
