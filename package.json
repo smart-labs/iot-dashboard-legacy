@@ -13,7 +13,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-mapbox-gl": "^4.4.0",
-    "react-router-dom": "^5.0.0",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "3.0.1",
     "react-use-form-state": "^0.10.2",
     "reactn": "^2.0.4",
