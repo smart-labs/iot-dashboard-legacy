@@ -19,7 +19,7 @@
     "reactn": "^2.0.4",
     "recharts": "^1.6.2",
     "socket.io-client": "^2.2.0",
-    "styled-components": "^4.2.0"
+    "styled-components": "^4.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
