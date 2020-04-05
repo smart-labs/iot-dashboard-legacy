@@ -8660,10 +8660,10 @@ react@^16.8.6:
     prop-types "^15.6.2"
     scheduler "^0.13.6"
 
-reactn@^2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/reactn/-/reactn-2.0.4.tgz#d17588bc344adfa58c3db6b46b40e3a67789d729"
-  integrity sha512-f08CMb9a00TiYoKhlErrn5JzM6zaD3A3b6FuxONgB37hqLe6UaIsOBxKDZHoqz3cSGE/kAeaSdpxtd2uLvG0bg==
+reactn@^2.2.7:
+  version "2.2.7"
+  resolved "https://registry.yarnpkg.com/reactn/-/reactn-2.2.7.tgz#4d9a94ab0d8a540062666408e4bf1fae6892cecc"
+  integrity sha512-cqnt23kWN/ABqEZhW3OlpqI1DgTaaNDeHpSHtyd81qk0H1jd32zPTzJ69Hpzti2WakwNYveGFPIgI6i7E7nXOA==
   dependencies:
     use-force-update "^1.0.5"
 
